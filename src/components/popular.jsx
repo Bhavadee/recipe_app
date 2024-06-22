@@ -25,6 +25,16 @@ function Popular() {
           <Splide
            options={{
                perPage:4,
+               breakpoints: {
+                1024: {
+                  perPage: 2,
+                  gap: "2rem",
+                },
+                640: {
+                  perPage: 1,
+                  gap: "1rem",
+                },
+              },
                arrows:false,
                pagination:false,
                drag:"free",
@@ -89,7 +99,7 @@ function Popular() {
   `;
   const Gradient = styled.div`
   z-index:3;
-  postion:absolute;
+  position:absolute;
   width:100%;
   height:100%;
   background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.5));`;

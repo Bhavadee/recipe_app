@@ -26,6 +26,16 @@ function Vigge() {
           <Splide
            options={{
                perPage:3,
+               breakpoints: {
+                1024: {
+                  perPage: 2,
+                  gap: "2rem",
+                },
+                640: {
+                  perPage: 1,
+                  gap: "1rem",
+                },
+              },
                arrows:false,
                pagination:false,
                drag:"free",
@@ -68,8 +78,9 @@ function Vigge() {
     border-radius:2rem;
     position: absolute;
     left:0;
-    
-    object-fit:cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   p{
@@ -91,7 +102,7 @@ function Vigge() {
   `;
   const Gradient = styled.div`
   z-index:3;
-  postion:absolute;
+  position:absolute;
   width:100%;
   height:100%;
   background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));

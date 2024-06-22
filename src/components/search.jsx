@@ -29,6 +29,14 @@ function Search() {
 }
 const FormStyle = styled.form`
 margin:0rem 10rem;
+  @media (max-width: 768px) {
+    margin: 0rem 2rem;
+  }
+
+  @media (max-width: 480px) {
+    margin: 0rem 1rem;
+  }
+
 
 div{
 position:relative;
@@ -44,6 +52,10 @@ input{
     border-radius: 1rem;
     outline:none;
     width:100%;
+     @media (max-width: 480px) {
+      padding: 0.8rem 1.5rem;
+      font-size: 0.9rem;
+    }
      
 }
 svg{
