@@ -22,7 +22,7 @@ function Vigge() {
      
     
         <Wrapper>
-          <h3>Vigge Picks</h3>
+          <h3>Vegetarian Picks</h3>
           <Splide
            options={{
                perPage:3,

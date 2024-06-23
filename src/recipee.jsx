@@ -23,109 +23,126 @@ function Recipee() {
   return (
     <DetailWrapper>
       <div>
-        <h2>{details.title}</h2>
-        <img src={details.image} alt="" />
+        <Title>{details.title}</Title>
+        <Image src={details.image} alt={details.title} />
       </div>
-      <div>
-        <Info>
-          <Button
-            className={activeTab === "instructions" ? "active" : ""}
-            onClick={() => setActiveTab("instructions")}
-          >
-            Instructions
-          </Button>
-          <Button
-            className={activeTab === "ingredients" ? "active" : ""}
-            onClick={() => setActiveTab("ingredients")}
-          >
-            Ingredients
-          </Button>
-          {activeTab === "instructions" && (
-            <div>
-              <p dangerouslySetInnerHTML={{ __html: details.summary }}></p>
-              <br />
-              <br />
-              <p dangerouslySetInnerHTML={{ __html: details.instructions }}></p>
-            </div>
-          )}
-          {activeTab === "ingredients" && (
-            <ul>
-              {details.extendedIngredients.map((ingredient) => (
-                <li key={ingredient.id}>{ingredient.original}</li>
-              ))}
-            </ul>
-          )}
-        </Info>
-      </div>
+      <Info>
+        <Button
+          className={activeTab === "instructions" ? "active" : ""}
+          onClick={() => setActiveTab("instructions")}
+        >
+          Instructions
+        </Button>
+        <Button
+          className={activeTab === "ingredients" ? "active" : ""}
+          onClick={() => setActiveTab("ingredients")}
+        >
+          Ingredients
+        </Button>
+        {activeTab === "instructions" && (
+          <Content>
+            <Paragraph dangerouslySetInnerHTML={{ __html: details.summary }}></Paragraph>
+            <Paragraph dangerouslySetInnerHTML={{ __html: details.instructions }}></Paragraph>
+          </Content>
+        )}
+        {activeTab === "ingredients" && (
+          <IngredientsList>
+            {details.extendedIngredients.map((ingredient) => (
+              <Ingredient key={ingredient.id}>{ingredient.original}</Ingredient>
+            ))}
+          </IngredientsList>
+        )}
+      </Info>
     </DetailWrapper>
   );
 }
 
 const DetailWrapper = styled.div`
-  margin-top: 6rem;
+  margin: 4rem 2rem;
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 6rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+`;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
+const Title = styled.h2`
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  text-align: center;
+`;
+
+const Image = styled.img`
+  max-width: 100%;
+  border-radius: 1.5rem;
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  @media (min-width: 768px) {
+    margin-left: 2rem;
+    width: auto;
+    text-align: left;
   }
 
   .active {
     background: linear-gradient(35deg, #484848, #313131);
     color: white;
   }
-  h2 {
-    margin-bottom: 1rem;
-  }
-  li {
-    font-size: 1.2rem;
-    line-height: 2.5rem;
-  }
-  ul {
-    margin-top: 2rem;
-  }
-  img {
-    max-width: 350px;
-    border-radius: 2rem;
-
-    @media (max-width: 768px) {
-      width: 100%;
-      height: auto;
-    }
-  }
 `;
 
 const Button = styled.button`
-  padding: 1rem 2rem;
+  padding: 0.75rem 1.5rem;
   color: #313131;
   background: white;
-  border: 2px solid black;
-  margin-right: 2rem;
+  border: 2px solid #313131;
+  margin: 0.5rem 0;
   font-weight: 600;
-
-  @media (max-width: 768px) {
-    padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  &:hover {
+    background: #313131;
+    color: white;
+  }
+  &.active {
+    background: linear-gradient(35deg, #484848, #313131);
+    color: white;
+  }
+  @media (min-width: 768px) {
     margin-right: 1rem;
-    font-size: 0.8rem;
   }
 `;
 
-const Info = styled.div`
-  margin-left: 5rem;
+const Content = styled.div`
+  margin-top: 1rem;
+`;
 
-  @media (max-width: 768px) {
-    margin-left: 0;
-    text-align: center;
+const Paragraph = styled.p`
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 1rem 0;
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
   }
+`;
 
-  p {
-    font-size: 1.2rem;
+const IngredientsList = styled.ul`
+  margin-top: 1rem;
+  padding-left: 1.5rem;
+`;
 
-    @media (max-width: 768px) {
-      font-size: 1rem;
-    }
+const Ingredient = styled.li`
+  font-size: 1rem;
+  line-height: 1.5;
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
   }
 `;
 
